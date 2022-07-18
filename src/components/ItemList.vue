@@ -1,6 +1,6 @@
 <template>
   <div class="wrap" v-if="items.length">
-    <transition-group name="list">
+    <transition-group name="item-list">
       <Item
         v-for="item in items"
         :item="item"
@@ -31,13 +31,16 @@ export default {
   gap: 16px;
 }
 
-.list-enter-active,
-.list-leave-active {
+.item-list-enter-active,
+.item-list-leave-active {
   transition: all 1s ease;
 }
-.list-enter-from,
-.list-leave-to {
+.item-list-enter-from,
+.item-list-leave-to {
   opacity: 0;
   transform: translateY(30px);
+}
+.item-list-move {
+  transition: transform 0.8s ease;
 }
 </style>

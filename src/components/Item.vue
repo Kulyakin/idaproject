@@ -31,7 +31,8 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "./assets/variables.scss";
 .item {
   width: 332px;
   height: 423px;

@@ -1,43 +1,54 @@
 <template>
   <form @submit.prevent class="left-panel">
-    <label id="name" class="name">Наименование товара</label>
-    <input
-      v-model="item.name"
-      id="name"
-      class="left-panel__input"
-      type="text"
-      placeholder="Введите наименование товара"
-      required
-    />
-    <label class="name">Описание товара</label>
-    <textarea
-      v-model="item.info"
-      class="left-panel__info-input"
-      type="text"
-      placeholder="Введите описание товара"
-    ></textarea>
-    <label class="name">Ссылка на изображение товара</label>
-    <input
-      v-model="item.img"
-      class="left-panel__input"
-      type="text"
-      placeholder="Введите ссылку"
-      required
-    />
-    <label class="name">Цена товара</label>
-    <input
-      v-model="item.price"
-      class="left-panel__input"
-      type="number"
-      placeholder="Введите цену"
-      required
-    />
+    <div class="label-wrap">
+      <label id="name" class="name">Наименование товара</label>
+      <input
+        v-model="item.name"
+        id="name"
+        class="left-panel__input"
+        type="text"
+        placeholder="Введите наименование товара"
+      />
+    </div>
+    <div class="label-wrap">
+      <label class="name">Описание товара</label>
+      <textarea
+        v-model="item.info"
+        class="left-panel__info-input"
+        type="text"
+        placeholder="Введите описание товара"
+      ></textarea>
+    </div>
+    <div class="label-wrap">
+      <label class="name">Ссылка на изображение товара</label>
+      <input
+        v-model="item.img"
+        class="left-panel__input"
+        type="text"
+        placeholder="Введите ссылку"
+      />
+    </div>
+    <div class="label-wrap">
+      <label class="name">Цена товара</label>
+      <input
+        v-model="item.price"
+        class="left-panel__input"
+        type="number"
+        placeholder="Введите цену"
+      />
+    </div>
     <button @click="createItem" class="btn">Добавить товар</button>
   </form>
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required, minLength } from "@vuelidate/validators";
+
 export default {
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
       item: {
@@ -47,6 +58,21 @@ export default {
         price: "",
       },
     };
+  },
+  validations() {
+    return {
+      item: {
+        name: { required, minLength: minLength(3) },
+        img: { required, minLength: minLength(3) },
+        price: { required },
+      },
+    };
+  },
+  computed: {
+    nameErrors() {
+      const errors = [];
+      if (this.$v.$silentErrors) return errors;
+    },
   },
   methods: {
     createItem() {
@@ -64,11 +90,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "./assets/variables.scss";
 .name {
   font-size: 10px;
+  margin-bottom: 4px;
 }
 
+.label-wrap {
+  display: flex;
+  flex-direction: column;
+}
 .left-panel {
   width: 332px;
   height: 440px;
@@ -87,7 +119,7 @@ export default {
   width: 268px;
   height: 36px;
   padding: 0 0 0 16px;
-  color: #b4b4b4;
+  color: $placeholder-color;
 
   background: #fffefb;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -107,7 +139,7 @@ export default {
   width: 268px;
   height: 108px;
   padding: 10px 0 0 16px;
-  color: #b4b4b4;
+  color: $placeholder-color;
   resize: none;
   font-family: "Source Sans Pro", sans-serif;
   background: #fffefb;
