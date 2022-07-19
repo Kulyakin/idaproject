@@ -26,12 +26,13 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+@import "./assets/variables.scss";
 .header {
   max-width: 1440px;
   max-height: 83px;
-  background-color: rgba(255, 254, 251, 0.8);
+  color: $text-color;
+  background-color: $background;
   display: flex;
   justify-content: space-between;
 }

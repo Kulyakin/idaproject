@@ -77,14 +77,14 @@ export default {
   height: 80px;
 }
 .item__info-p {
-  color: #3f3f3f;
+  color: $text-color;
   font-size: 16px;
   margin-left: 16px;
   word-wrap: break-word;
 }
 
 .item__price {
-  color: #3f3f3f;
+  color: $text-color;
   font-size: 24px;
   margin-top: 32px;
   margin-left: 16px;

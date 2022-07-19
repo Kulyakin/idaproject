@@ -20,8 +20,8 @@ export default {};
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 8px solid $loader-color;
-  border-color: $loader-color transparent $loader-color transparent;
+  border: 8px solid $text-color;
+  border-color: $text-color transparent $text-color transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {

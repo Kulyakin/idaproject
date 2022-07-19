@@ -85,7 +85,8 @@ export default {
 };
 </script>
 
-<style sxoped>
+<style lang="scss" sxoped>
+@import "./components/assets/variables.scss";
 
 .container {
   max-width: 1440px;
@@ -108,6 +109,7 @@ export default {
 .header__sort {
   margin-right: 32px;
   margin-top: 32px;
+  padding-left: 10px;
   width: 121.49px;
   height: 36px;
   background: #fffefb;
@@ -116,6 +118,8 @@ export default {
   border: none;
   user-select: none;
   overflow-x: hidden;
+  font-size: 12px;
+  color: $placeholder-color;
 }
 
 .header-up {

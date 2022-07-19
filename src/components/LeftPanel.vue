@@ -96,6 +96,7 @@ export default {
   position: relative;
   font-size: 10px;
   margin-bottom: 4px;
+  color: $name;
 }
 
 .label-wrap {
@@ -161,7 +162,6 @@ export default {
   left: 56px;
   top: 463px;
   padding: 0;
-
   background: #eeeeee;
   border-radius: 10px;
   border: none;
