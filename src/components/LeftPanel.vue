@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent class="left-panel">
     <div class="label-wrap">
-      <label id="name" class="name">Наименование товара</label>
+      <label id="name" class="name">Наименование товара<img class="dot" src="./assets/Dot.svg" alt=""></label>
       <input
         v-model="item.name"
         id="name"
@@ -20,7 +20,7 @@
       ></textarea>
     </div>
     <div class="label-wrap">
-      <label class="name">Ссылка на изображение товара</label>
+      <label class="name">Ссылка на изображение товара<img class="dot" src="./assets/Dot.svg" alt=""></label>
       <input
         v-model="item.img"
         class="left-panel__input"
@@ -29,7 +29,7 @@
       />
     </div>
     <div class="label-wrap">
-      <label class="name">Цена товара</label>
+      <label class="name">Цена товара<img class="dot" src="./assets/Dot.svg" alt=""></label>
       <input
         v-model="item.price"
         class="left-panel__input"
@@ -121,7 +121,7 @@ export default {
   height: 36px;
   padding: 0 0 0 16px;
   color: $placeholder-color;
-
+  outline: none;
   background: #fffefb;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
@@ -132,8 +132,8 @@ export default {
   border: 1px solid red;
 }
 
-.left-panel__input:enabled {
-  border: 1px solid white;
+.left-panel__input:focus {
+  outline: 1px solid $placeholder-color;
 }
 
 .left-panel__info-input {
@@ -148,6 +148,11 @@ export default {
   border-radius: 4px;
   border: none;
   font-size: 14px;
+  outline: none;
+}
+
+.left-panel__info-input:focus {
+  outline: 1px solid $placeholder-color;
 }
 
 .btn {
@@ -161,6 +166,10 @@ export default {
   border-radius: 10px;
   border: none;
   cursor: pointer;
+}
+.dot {
+  position: relative;
+  top: -5px;
 }
 
 .btn:hover {
