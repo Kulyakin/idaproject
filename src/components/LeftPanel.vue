@@ -9,6 +9,7 @@
         type="text"
         placeholder="Введите наименование товара"
       />
+      <p class="error">{{nameErrors[0]}}</p>
     </div>
     <div class="label-wrap">
       <label class="name">Описание товара</label>
@@ -27,6 +28,7 @@
         type="text"
         placeholder="Введите ссылку"
       />
+      <p class="error">{{imgErrors[0]}}</p>
     </div>
     <div class="label-wrap">
       <label class="name">Цена товара<img class="dot" src="./assets/Dot.svg" alt=""></label>
@@ -36,6 +38,7 @@
         type="number"
         placeholder="Введите цену"
       />
+      <p class="error">{{priceErrors[0]}}</p>
     </div>
     <button 
       @click="createItem" 
@@ -46,7 +49,7 @@
 
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required, minLength, helpers } from "@vuelidate/validators";
+import { required, minLength } from "@vuelidate/validators";
 
 export default {
   setup() {
@@ -75,7 +78,21 @@ export default {
   computed: {
     nameErrors() {
       const errors = [];
-      if (this.v$.item.$silentErrors) return errors;
+      if (this.v$.item.name.required.$invalid) errors.push('Поле является обязательным')
+        if (this.v$.item.name.minLength.$invalid) errors.push('Не меньше трех символов')
+        return errors
+    },
+    imgErrors() {
+      const errors = [];
+      if (this.v$.item.img.required.$invalid) errors.push('Поле является обязательным')
+        if (this.v$.item.img.minLength.$invalid) errors.push('Не меньше трех символов')
+        return errors
+    },
+    priceErrors() {
+      const errors = [];
+      if (this.v$.item.price.required.$invalid) errors.push('Поле является обязательным')
+        if (this.v$.item.price.minLength.$invalid) errors.push('Не меньше трех символов')
+        return errors
     },
     btnState() {
       this.isSuccess = this.v$.$invalid
@@ -195,6 +212,12 @@ export default {
 .dot {
   position: relative;
   top: -5px;
+}
+
+.error {
+  font-size: 8px;
+  color: $error;
+  padding-top: 4px;
 }
 
 .btn:hover {
