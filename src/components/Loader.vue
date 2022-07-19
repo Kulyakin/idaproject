@@ -6,7 +6,8 @@
 export default {};
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import './assets/variables.scss';
 .loader {
   display: inline-block;
   width: 80px;
@@ -19,8 +20,8 @@ export default {};
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  border: 8px solid #3f3f3f;
-  border-color: #3f3f3f transparent #3f3f3f transparent;
+  border: 8px solid $loader-color;
+  border-color: $loader-color transparent $loader-color transparent;
   animation: lds-dual-ring 1.2s linear infinite;
 }
 @keyframes lds-dual-ring {
