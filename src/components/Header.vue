@@ -26,7 +26,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
 .header {
   max-width: 1440px;
   max-height: 83px;

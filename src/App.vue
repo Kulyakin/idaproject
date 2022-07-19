@@ -85,15 +85,7 @@ export default {
 };
 </script>
 
-<style>
-* {
-  padding: 0;
-  margin: 0;
-}
-
-:root {
-  font-family: "Source Sans Pro", sans-serif;
-}
+<style sxoped>
 
 .container {
   max-width: 1440px;
