@@ -93,6 +93,7 @@ export default {
 <style lang="scss" scoped>
 @import "./assets/variables.scss";
 .name {
+  position: relative;
   font-size: 10px;
   margin-bottom: 4px;
 }
@@ -131,7 +132,7 @@ export default {
   border: 1px solid red;
 }
 
-.left-panel__input:focus {
+.left-panel__input:enabled {
   border: 1px solid white;
 }
 

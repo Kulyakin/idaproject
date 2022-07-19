@@ -1,10 +1,10 @@
 <template>
   <header class="header-up">
     <Header />
-    <div id="v-model-select" class="">
+    <div id="v-model-select" class=""> <!-- Вынести в отдельный компонент -->
       <select class="header__sort" v-model="selected">
         <option disabled value="">По умолчанию</option>
-        <option value="min-max" class="header__sort">По цене min</option>
+        <option value="min-max">По цене min</option>
         <option value="max-min">По цене max</option>
         <option value="name">По наименованию</option>
       </select>
