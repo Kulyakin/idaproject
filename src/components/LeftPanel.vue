@@ -43,7 +43,7 @@
 
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required, minLength } from "@vuelidate/validators";
+import { required, minLength, helpers } from "@vuelidate/validators";
 
 export default {
   setup() {
@@ -62,21 +62,22 @@ export default {
   validations() {
     return {
       item: {
-        name: { required, minLength: minLength(3) },
+        name: { required: helpers.withMessage('This field cannot be empty', required) },
         img: { required, minLength: minLength(3) },
-        price: { required },
+        price: { required, minLength: minLength(3) },
       },
     };
   },
   computed: {
     nameErrors() {
       const errors = [];
-      if (this.$v.$silentErrors) return errors;
+      if (this.v$.item.$silentErrors) return errors;
     },
   },
   methods: {
     createItem() {
-      this.item.id = Date.now();
+      if (this.v$.$invalid == false) // Базовая валидация
+      {this.item.id = Date.now();
       this.item.key = this.item.id;
       this.$emit("create", this.item);
       this.item = {
@@ -84,7 +85,7 @@ export default {
         info: "",
         img: "",
         price: "",
-      };
+      }}
     },
   },
 };
@@ -163,7 +164,9 @@ export default {
   top: 463px;
   padding: 0;
   background: #eeeeee;
+  color: $placeholder-color;
   border-radius: 10px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
 }
