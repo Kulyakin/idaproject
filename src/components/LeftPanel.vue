@@ -37,7 +37,10 @@
         placeholder="Введите цену"
       />
     </div>
-    <button @click="createItem" class="btn">Добавить товар</button>
+    <button 
+      @click="createItem" 
+      v-bind:class="[ isSuccess ? 'btn' : 'success']"
+      >Добавить товар</button>
   </form>
 </template>
 
@@ -57,12 +60,13 @@ export default {
         img: "",
         price: "",
       },
+      isSuccess: false
     };
   },
   validations() {
     return {
       item: {
-        name: { required: helpers.withMessage('This field cannot be empty', required) },
+        name: { required, minLength: minLength(3)},
         img: { required, minLength: minLength(3) },
         price: { required, minLength: minLength(3) },
       },
@@ -73,11 +77,15 @@ export default {
       const errors = [];
       if (this.v$.item.$silentErrors) return errors;
     },
+    btnState() {
+      this.isSuccess = this.v$.$invalid
+    }
   },
   methods: {
     createItem() {
       if (this.v$.$invalid == false) // Базовая валидация
-      {this.item.id = Date.now();
+      {
+      this.item.id = Date.now();
       this.item.key = this.item.id;
       this.$emit("create", this.item);
       this.item = {
@@ -85,7 +93,8 @@ export default {
         info: "",
         img: "",
         price: "",
-      }}
+      }
+      }
     },
   },
 };
@@ -165,6 +174,19 @@ export default {
   padding: 0;
   background: #eeeeee;
   color: $placeholder-color;
+  border-radius: 10px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+.success {
+  color: white;
+  background-color: $success;
+  width: 284px;
+  height: 36px;
+  left: 56px;
+  top: 463px;
+  padding: 0;
   border-radius: 10px;
   font-size: 12px;
   border: none;
