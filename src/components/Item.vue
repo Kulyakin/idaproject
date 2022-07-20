@@ -55,7 +55,7 @@ export default {
   transition: ease-in-out 0.5s;
 }
 .item:hover {
-  transform: scale(1.05) ;
+  transform: scale(1.05);
 }
 
 .img-block {
